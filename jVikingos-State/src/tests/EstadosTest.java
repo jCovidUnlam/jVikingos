@@ -21,7 +21,6 @@ public class EstadosTest {
 	@Test
 	public void testNormalAColerico() {
 		v1.atacar(v2);
-		assertEquals(90, v2.getHP());
 		assertEquals(new Colerico(), v2.getEstado());
 	}
 	
@@ -29,7 +28,6 @@ public class EstadosTest {
 	public void testNormalABerseker() {
 		v1.atacar(v2);
 		v1.atacar(v2);
-		assertEquals(70, v2.getHP());
 		assertEquals(new Berseker(), v2.getEstado());
 	}
 	
@@ -38,7 +36,6 @@ public class EstadosTest {
 		v1.atacar(v2);
 		v1.atacar(v2);
 		v1.atacar(v2);
-		assertEquals(65, v2.getHP());
 		assertEquals(new Berseker(), v2.getEstado());
 	}
 	
@@ -48,7 +45,6 @@ public class EstadosTest {
 		v1.atacar(v2);
 		v1.atacar(v2);
 		v2.meditar();
-		assertEquals(65, v2.getHP());
 		assertEquals(new Normal(), v2.getEstado());
 	}
 	
@@ -58,8 +54,6 @@ public class EstadosTest {
 		v1.atacar(v2);
 		v1.atacar(v2);
 		v2.atacar(v1);
-		assertEquals(65, v2.getHP());
-		assertEquals(-20, v1.getHP());
 		assertEquals(new FueraDeCombate(), v1.getEstado());
 	}
 	
@@ -68,7 +62,6 @@ public class EstadosTest {
 	public void testColericoANormal() {
 		v1.atacar(v2);
 		v2.meditar();
-		assertEquals(90, v2.getHP());
 		assertEquals(new Normal(), v2.getEstado());
 	}
 	
@@ -120,6 +113,15 @@ public class EstadosTest {
 		v1.atacar(v3);
 		v1.atacar(v3);
 		assertEquals(new FueraDeCombate(), v3.getEstado());
+	}
+	
+	@Test
+	public void testPermaneceFueraDeCombate() {
+		v2.atacar(v1);
+		assertEquals(new FueraDeCombate(), v1.getEstado());
+		v2.atacar(v1);
+		v1.meditar();
+		assertEquals(new FueraDeCombate(), v1.getEstado());
 	}
 
 }
