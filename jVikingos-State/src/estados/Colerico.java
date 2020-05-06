@@ -20,7 +20,7 @@ public class Colerico extends Estado{
 	
 	@Override
 	public Estado meditar() {
-		return this;
+		return new Normal();
 	}
 
 }
